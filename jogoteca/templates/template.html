@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Jogoteca</title>
+	 <meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='bootstrap.css')}}">
+</head>
+<body>
+
+	<div class="container">
+		
+			<h1>{{titulo}}</h1>
+	
+	
+
+	{% block conteudo %} {% endblock %}
+
+	</div>
+</body>
