@@ -1,43 +1,13 @@
-from flask import Flask, render_template, request, redirect
+from flask import Flask, render_template, request, redirect, session, flash, url_for, send_from_directory
+
+from flask_mysqldb import MySQL
 
 aplicacao_web = Flask(__name__)
+aplicacao_web.config.from_pyfile('config.py')
 
-class Jogo:
-	def __init__(self, nome, categoria, console):
-		self.nome = nome
-		self.categoria = categoria
-		self.console = console
-
-jogo1 = Jogo('Super Mario', 'Ação', 'SNES')
-jogo2 = Jogo('Pokemon Gold', 'RPG', 'GBA')
-jogo3 = Jogo('Mortal Kombat', 'Luta', 'SNES')
-lista = [jogo1, jogo2, jogo3]
+db = MySQL(aplicacao_web)
 
 
-@aplicacao_web.route('/')
-def ola():
-	return render_template('lista.html', jogos=lista, titulo="Jogos")
-
-@aplicacao_web.route('/novo')
-def form():
-	return render_template('novo.html', titulo='Novo Jogo')
-
-@aplicacao_web.route('/salvar', methods=['POST'])
-def salvar():
-	nome = request.form['nome']
-	categoria = request.form['categoria']
-	console = request.form['console']
-	jogo = Jogo(nome, categoria, console)
-	lista.append(jogo)
-	return redirect('/')
-
-@aplicacao_web.route('/login')
-def login():
-	return render_template('login.html')
-
-@aplicacao_web.route('/autenticar')
-def autanticar():
-	if 'mestra' == request.form['senha']
-		return redirect('')
-
-aplicacao_web.run(debug=True)
+from views import *
+if (__name__) == '__main__':
+	aplicacao_web.run(debug=True)
